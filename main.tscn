@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3]
+
+[sub_resource type="RectangleShape2D" id="GroundShape"]
+size = Vector2(1280, 112)
+
+[sub_resource type="RectangleShape2D" id="PlatformShape"]
+size = Vector2(220, 24)
+
+[sub_resource type="RectangleShape2D" id="PlayerShape"]
+size = Vector2(36, 54)
+
+[node name="Main" type="Node2D"]
+
+[node name="Title" type="Label" parent="."]
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 800.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
+theme_override_font_sizes/font_size = 34
+text = "SuperMarioClone"
+
+[node name="Description" type="Label" parent="."]
+offset_left = 48.0
+offset_top = 88.0
+offset_right = 1100.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(0.68, 0.75, 0.84, 1)
+theme_override_font_sizes/font_size = 20
+text = "Prototipo 2D"
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(640, 664)
+
+[node name="Visual" type="Polygon2D" parent="Ground"]
+polygon = PackedVector2Array(-640, -56, 640, -56, 640, 56, -640, 56)
+color = Color(0.16, 0.21, 0.29, 1)
+
+[node name="Surface" type="Polygon2D" parent="Ground"]
+polygon = PackedVector2Array(-640, -56, 640, -56, 640, -44, -640, -44)
+color = Color(0.27, 0.73, 0.64, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("GroundShape")
+
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(540, 490)
+
+[node name="Visual" type="Polygon2D" parent="Platform"]
+polygon = PackedVector2Array(-110, -12, 110, -12, 110, 12, -110, 12)
+color = Color(0.27, 0.73, 0.64, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+shape = SubResource("PlatformShape")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(160, 581)
+
+[node name="Visual" type="Polygon2D" parent="Player"]
+polygon = PackedVector2Array(-18, -27, 18, -27, 18, 27, -18, 27)
+color = Color(1, 0.75, 0.3, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("PlayerShape")
