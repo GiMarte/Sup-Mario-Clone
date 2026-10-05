@@ -7,8 +7,8 @@
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=2020739984]
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=927957428]
-position = Vector2(641.00006, 296.875)
-scale = Vector2(1.9305136, 1.2705184)
+position = Vector2(641.00006, 313.375)
+scale = Vector2(1.9305136, 1.3417927)
 texture = ExtResource("1_0fo66")
 
 [node name="Parallax2D2" type="Parallax2D" parent="." unique_id=331642409]
