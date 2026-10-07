@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cjtapgdgr3utw"]
 
-[ext_resource type="Script" uid="uid://dy12lyam35r8f" path="res://player.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://ee0r3rwrjqi5" path="res://Player.cs" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://bpsteh17oj8cq" path="res://Assets/luigi_swag.png" id="2_0xm2m"]
 
 [sub_resource type="RectangleShape2D" id="GroundShape"]
@@ -58,7 +58,7 @@ shape = SubResource("PlatformShape")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=294523298]
 position = Vector2(160, 581)
-script = ExtResource("1_ig7tw")
+script = ExtResource("1_0xm2m")
 
 [node name="Visual" type="Polygon2D" parent="Player" unique_id=712531440]
 visible = false
