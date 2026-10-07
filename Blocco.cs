@@ -25,12 +25,19 @@ public partial class Blocco : StaticBody2D
             premio.GlobalPosition = GlobalPosition;
             premio.ZIndex = -1;
 
-            premio.CreateTween().TweenProperty(
+            var tween = premio.CreateTween();
+
+            tween.TweenProperty(
                 premio,
                 "global_position",
                 GlobalPosition + new Vector2(0, -40),
                 0.25
             );
+
+            if (premio is Fungo fungo)
+            {
+                tween.TweenCallback(Callable.From(fungo.Avvia));
+            }
         }
 
         return true;

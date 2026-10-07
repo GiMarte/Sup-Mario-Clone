@@ -45,4 +45,15 @@ public partial class Player : CharacterBody2D
 			}
 		}
 	}
+
+	public enum TipoPotere { Nessuno, Ghiaccio, Fuoco }
+
+	public TipoPotere PotereAttuale { get; private set; }
+		= TipoPotere.Nessuno;
+
+	public void RiceviPotere(TipoPotere potere)
+	{
+		PotereAttuale = potere;
+		GD.Print($"Potere raccolto: {PotereAttuale}");
+	}
 }
