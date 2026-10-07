@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cjtapgdgr3utw"]
 
 [ext_resource type="Script" uid="uid://dy12lyam35r8f" path="res://player.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://bpsteh17oj8cq" path="res://Assets/luigi_swag.png" id="2_0xm2m"]
 
 [sub_resource type="RectangleShape2D" id="GroundShape"]
 size = Vector2(1280, 112)
@@ -9,7 +10,7 @@ size = Vector2(1280, 112)
 size = Vector2(220, 24)
 
 [sub_resource type="RectangleShape2D" id="PlayerShape"]
-size = Vector2(36, 54)
+size = Vector2(22, 28)
 
 [node name="Main" type="Node2D" unique_id=405275907]
 
@@ -60,8 +61,19 @@ position = Vector2(160, 581)
 script = ExtResource("1_ig7tw")
 
 [node name="Visual" type="Polygon2D" parent="Player" unique_id=712531440]
+visible = false
 color = Color(1, 0.75, 0.3, 1)
 polygon = PackedVector2Array(-18, -27, 18, -27, 18, 27, -18, 27)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=194991945]
+position = Vector2(-9, 13)
 shape = SubResource("PlayerShape")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=353115632]
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1109236072]
+position = Vector2(-9, 13)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_0xm2m")
+region_enabled = true
+region_rect = Rect2(37, 40, 14, 18)
