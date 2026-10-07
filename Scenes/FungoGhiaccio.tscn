@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://uxp68a566uji"]
+
+[ext_resource type="Texture2D" uid="uid://c5v1wuyslor8h" path="res://Assets/Fungo-ghiaccio.png" id="1_up2lb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pctwx"]
+size = Vector2(24, 32)
+
+[node name="FungoGhiaccio" type="CharacterBody2D" unique_id=1025671403]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=922502959]
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("1_up2lb")
+region_enabled = true
+region_rect = Rect2(41, 22, 24, 21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1447600557]
+shape = SubResource("RectangleShape2D_pctwx")
+disabled = true

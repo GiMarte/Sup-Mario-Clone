@@ -28,7 +28,21 @@ public partial class Player : CharacterBody2D
 			velocity.X = Mathf.MoveToward(velocity.X, 0, Speed);
 		}
 
+		bool stavaSalendo = velocity.Y < 0;
 		Velocity = velocity;
 		MoveAndSlide();
+
+		if (stavaSalendo)
+		{
+			for (int i = 0; i < GetSlideCollisionCount(); i++)
+			{
+				var collisione = GetSlideCollision(i);
+				// La faccia inferiore del blocco ha la normale rivolta verso il basso.
+				if (collisione.GetNormal().Y > 0.5f && collisione.GetCollider() is Blocco blocco)
+				{
+					blocco.Colpisci();
+				}
+			}
+		}
 	}
 }

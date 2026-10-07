@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y7wgutug4eeb"
-path="res://.godot/imported/cielo.jpg-17d4669c0c3d0f075d06209fa3a85840.ctex"
+uid="uid://c4rg7thsj8viu"
+path="res://.godot/imported/Moneta.png-64a6345c6f4e516fd255dc38e7819ff8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cielo.jpg"
-dest_files=["res://.godot/imported/cielo.jpg-17d4669c0c3d0f075d06209fa3a85840.ctex"]
+source_file="res://Assets/Moneta.png"
+dest_files=["res://.godot/imported/Moneta.png-64a6345c6f4e516fd255dc38e7819ff8.ctex"]
 
 [params]
 
