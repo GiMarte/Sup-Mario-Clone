@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://barx8jc6jvpal"]
+[gd_scene format=3 uid="uid://bagtroqg53yl1"]
 
 [ext_resource type="Texture2D" uid="uid://ci2nx524wpwtr" path="res://Assets/Fungo-fuoco.png" id="1_4ixeg"]
 [ext_resource type="Script" uid="uid://cext4rgti7q8o" path="res://Scripts/Mushroom.cs" id="1_th1bx"]

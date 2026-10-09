@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://uxp68a566uji"]
+[gd_scene format=3 uid="uid://clrbg1fxfue5o"]
 
 [ext_resource type="Script" uid="uid://cext4rgti7q8o" path="res://Scripts/Mushroom.cs" id="1_gm8w7"]
 [ext_resource type="Texture2D" uid="uid://c5v1wuyslor8h" path="res://Assets/Fungo-ghiaccio.png" id="1_up2lb"]
