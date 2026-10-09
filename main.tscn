@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cjtapgdgr3utw"]
 
-[ext_resource type="Script" uid="uid://ee0r3rwrjqi5" path="res://Player.cs" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://ee0r3rwrjqi5" path="res://Scripts/Player.cs" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://bpsteh17oj8cq" path="res://Assets/luigi_swag.png" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dlq3a6y04vsnf" path="res://Scenes/blocco.tscn" id="3_blocco"]
 [ext_resource type="Texture2D" uid="uid://qmjifr2oe0u3" path="res://Assets/CuboTerra.png" id="4_terreno"]
