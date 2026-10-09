@@ -15,6 +15,7 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
+			GetNode<AudioStreamPlayer>("JumpSound").Play();
 		}
 
 		float direction = Input.GetAxis("move_left", "move_right");

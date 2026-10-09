@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://barx8jc6jvpal" path="res://Scenes/FireMushroom.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://uxp68a566uji" path="res://Scenes/IceMushroom.tscn" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bq6762kd3oh0" path="res://Scenes/Coin.tscn" id="8_kek77"]
+[ext_resource type="AudioStream" uid="uid://cq08wkthy6eam" path="res://SoundsEffects/jump.wav" id="9_jump"]
 
 [sub_resource type="RectangleShape2D" id="GroundShape"]
 size = Vector2(1280, 112)
@@ -77,6 +78,10 @@ position = Vector2(-9, 11)
 shape = SubResource("PlayerShape")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=353115632]
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="Player" unique_id=121145131]
+stream = ExtResource("9_jump")
+volume_db = -34.692
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1109236072]
 texture_filter = 1

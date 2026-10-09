@@ -19,6 +19,7 @@ public partial class Coin : Node2D
 			0.25
 		);
 
+		tween.TweenInterval(0.25);
 		tween.TweenCallback(Callable.From(QueueFree));
 	}
 }

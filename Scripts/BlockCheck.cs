@@ -71,6 +71,11 @@ public partial class BlockCheck : Node
             Require(!other.Hit(), "The same instance must reject a second hit.");
 
             GD.Print("PASS: proportions, underside hit, texture swap, second hit, side contact, landing and independent instances.");
+            var jumpSound = _player.GetNode<AudioStreamPlayer>("JumpSound");
+            if (jumpSound.Playing)
+                await ToSignal(jumpSound, AudioStreamPlayer.SignalName.Finished);
+            await Step();
+            await Step();
             GetTree().Quit();
         }
         catch (Exception error)

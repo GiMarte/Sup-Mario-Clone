@@ -38,6 +38,10 @@ public partial class Block : StaticBody2D
             {
                 tween.TweenCallback(Callable.From(mushroom.Activate));
             }
+            else if (reward is Coin)
+            {
+                GetNode<AudioStreamPlayer>("CoinSound").Play();
+            }
         }
 
         return true;
