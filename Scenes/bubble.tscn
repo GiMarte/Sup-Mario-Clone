@@ -1,13 +1,27 @@
 [gd_scene format=3 uid="uid://cxkyle2uucfyc"]
 
+<<<<<<< HEAD
 [ext_resource type="Script" uid="uid://dfhusw31bemj3" path="res://Scripts/Bubble.cs" id="1_amq2t"]
 [ext_resource type="Texture2D" uid="uid://bmfccvp1cpfom" path="res://Assets/BigBubble.png" id="2_i1mt7"]
 [ext_resource type="Texture2D" uid="uid://cbw57uyoklmdc" path="res://Assets/SmallBubble.png" id="3_i1mt7"]
+=======
+[ext_resource type="Texture2D" uid="uid://bmfccvp1cpfom" path="res://Assets/BigBubble.png" id="1_fu76k"]
+[ext_resource type="Script" uid="uid://dfhusw31bemj3" path="res://Scripts/Bubble.cs" id="1_i1mt7"]
+[ext_resource type="Texture2D" uid="uid://cbw57uyoklmdc" path="res://Assets/SmallBubble.png" id="3_0iu24"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7wl2m"]
+radius = 9.999999
+>>>>>>> main
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mhpds"]
 radius = 13.038404
 
+<<<<<<< HEAD
 [sub_resource type="CircleShape2D" id="CircleShape2D_7wl2m"]
+=======
+[node name="Bubble" type="Area2D" unique_id=1745232222]
+script = ExtResource("1_i1mt7")
+>>>>>>> main
 
 [node name="Bubble" type="Area2D" unique_id=2117980552]
 script = ExtResource("1_amq2t")

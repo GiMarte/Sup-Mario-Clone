@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dlq3a6y04vsnf"]
+
+[ext_resource type="Script" uid="uid://dw13213iysj53" path="res://Scripts/Block.cs" id="1_block"]
+[ext_resource type="Texture2D" uid="uid://dak87j88lx5ut" path="res://Assets/Cubetto-Domanda.png" id="2_n3yq7"]
+[ext_resource type="AudioStream" uid="uid://dhv45owv3mdfq" path="res://SoundsEffects/pickupCoin.wav" id="3_coin_sound"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_block"]
+size = Vector2(32, 32)
+
+[node name="Block" type="StaticBody2D" unique_id=843618988]
+script = ExtResource("1_block")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1226879918]
+shape = SubResource("RectangleShape2D_block")
+
+[node name="CoinSound" type="AudioStreamPlayer" parent="." unique_id=1263658698]
+stream = ExtResource("3_coin_sound")
+volume_db = -22.737
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1637622784]
+position = Vector2(4.7683716e-07, -0.50000143)
+scale = Vector2(2, 2.0625)
+texture = ExtResource("2_n3yq7")
+region_enabled = true
+region_rect = Rect2(43, 28, 16, 16)

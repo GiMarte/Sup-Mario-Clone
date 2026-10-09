@@ -48,7 +48,7 @@ public partial class Bubble : Area2D
 			return;
 		}
 
-		bool isAnyPlayer = body.Name == "Player" || body.Name == "Player1" || body.Name == "Player2" || (body is CharacterBody2D && body.Name != "polipetto");
+		bool isAnyPlayer = body.Name == "Player" || body.Name == "Player1" || body.Name == "Player2" || (body is CharacterBody2D && body.Name != "Octopus");
 
 		if (isAnyPlayer == true)
 		{
@@ -62,7 +62,7 @@ public partial class Bubble : Area2D
 		}
 		else
 		{
-			if (body.Name != "polipetto")
+			if (body.Name != "Octopus")
 			{
 				this.QueueFree();
 			}
