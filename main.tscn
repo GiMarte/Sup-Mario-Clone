@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://uxp68a566uji" path="res://Scenes/IceMushroom.tscn" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bq6762kd3oh0" path="res://Scenes/Coin.tscn" id="8_kek77"]
 [ext_resource type="AudioStream" uid="uid://cq08wkthy6eam" path="res://SoundsEffects/jump.wav" id="9_jump"]
-[ext_resource type="PackedScene" uid="uid://c0rjn1s1m2tt6" path="res://Scenes/Octopus.tscn" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://th6tkn58m8vq" path="res://Scenes/octopus.tscn" id="9_kek77"]
 
 [sub_resource type="RectangleShape2D" id="GroundShape"]
 size = Vector2(1280, 112)

@@ -11,6 +11,7 @@ radius = 8.0
 position = Vector2(10, 6)
 collision_mask = 3
 script = ExtResource("1_oqrbh")
+BubbleScene = ExtResource("3_t6ynv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1417363016]
 light_mask = 3
@@ -24,7 +25,3 @@ texture = ExtResource("1_nxj5y")
 
 [node name="ShootPoint" type="Node2D" parent="GunSprite" unique_id=1558449704]
 position = Vector2(-12, -16)
-
-[node name="Bubble" parent="." unique_id=2117980552 instance=ExtResource("3_t6ynv")]
-position = Vector2(-72, -53)
-scale = Vector2(2, 2)
