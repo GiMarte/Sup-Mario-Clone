@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://bq6762kd3oh0"]
 
+[ext_resource type="Script" uid="uid://buwqkifix5mib" path="res://Scripts/Coin.cs" id="1_somhs"]
 [ext_resource type="Texture2D" uid="uid://c4rg7thsj8viu" path="res://Assets/Moneta.png" id="1_xyrws"]
 
-[node name="Moneta" type="Node2D" unique_id=1903408066]
+[node name="Coin" type="Node2D" unique_id=1903408066]
+script = ExtResource("1_somhs")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1878877058]
 texture = ExtResource("1_xyrws")

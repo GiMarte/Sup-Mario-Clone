@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://ee0r3rwrjqi5" path="res://Scripts/Player.cs" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://bpsteh17oj8cq" path="res://Assets/luigi_swag.png" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://dlq3a6y04vsnf" path="res://Scenes/blocco.tscn" id="3_blocco"]
-[ext_resource type="Texture2D" uid="uid://qmjifr2oe0u3" path="res://Assets/CuboTerra.png" id="4_terreno"]
+[ext_resource type="PackedScene" uid="uid://dlq3a6y04vsnf" path="res://Scenes/Block.tscn" id="3_block"]
+[ext_resource type="Texture2D" uid="uid://qmjifr2oe0u3" path="res://Assets/CuboTerra.png" id="4_ground"]
 [ext_resource type="Texture2D" uid="uid://cb43b0ach2s1o" path="res://Assets/Cubotto-Vuoto.png" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://barx8jc6jvpal" path="res://Scenes/FungoFuoco.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://uxp68a566uji" path="res://Scenes/FungoGhiaccio.tscn" id="7_5vw27"]
-[ext_resource type="PackedScene" uid="uid://bq6762kd3oh0" path="res://Scenes/Moneta.tscn" id="8_kek77"]
+[ext_resource type="PackedScene" uid="uid://barx8jc6jvpal" path="res://Scenes/FireMushroom.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://uxp68a566uji" path="res://Scenes/IceMushroom.tscn" id="7_5vw27"]
+[ext_resource type="PackedScene" uid="uid://bq6762kd3oh0" path="res://Scenes/Coin.tscn" id="8_kek77"]
 
 [sub_resource type="RectangleShape2D" id="GroundShape"]
 size = Vector2(1280, 112)
@@ -46,7 +46,7 @@ texture_filter = 1
 offset_left = -640.0
 offset_top = -56.0
 scale = Vector2(2, 2)
-texture = ExtResource("4_terreno")
+texture = ExtResource("4_ground")
 region_rect = Rect2(43, 28, 16, 16)
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
@@ -72,11 +72,6 @@ position = Vector2(160, 581)
 collision_layer = 2
 script = ExtResource("1_0xm2m")
 
-[node name="Visual" type="Polygon2D" parent="Player" unique_id=712531440]
-visible = false
-color = Color(1, 0.75, 0.3, 1)
-polygon = PackedVector2Array(-18, -27, 18, -27, 18, 27, -18, 27)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=194991945]
 position = Vector2(-9, 11)
 shape = SubResource("PlayerShape")
@@ -91,17 +86,17 @@ texture = ExtResource("2_0xm2m")
 region_enabled = true
 region_rect = Rect2(37, 40, 14, 18)
 
-[node name="Blocco" parent="." unique_id=1087655851 instance=ExtResource("3_blocco")]
+[node name="Block" parent="." unique_id=1087655851 instance=ExtResource("3_block")]
 position = Vector2(282, 483)
-TextureVuota = ExtResource("5_lquwl")
-Premio = ExtResource("6_7mycd")
+UsedTexture = ExtResource("5_lquwl")
+RewardScene = ExtResource("6_7mycd")
 
-[node name="Blocco2" parent="." unique_id=843618988 instance=ExtResource("3_blocco")]
-position = Vector2(363, 482)
-TextureVuota = ExtResource("5_lquwl")
-Premio = ExtResource("7_5vw27")
+[node name="Block2" parent="." unique_id=843618988 instance=ExtResource("3_block")]
+position = Vector2(363, 483)
+UsedTexture = ExtResource("5_lquwl")
+RewardScene = ExtResource("7_5vw27")
 
-[node name="Blocco3" parent="." unique_id=768978426 instance=ExtResource("3_blocco")]
-position = Vector2(452, 484)
-TextureVuota = ExtResource("5_lquwl")
-Premio = ExtResource("8_kek77")
+[node name="Block3" parent="." unique_id=768978426 instance=ExtResource("3_block")]
+position = Vector2(433, 485)
+UsedTexture = ExtResource("5_lquwl")
+RewardScene = ExtResource("8_kek77")

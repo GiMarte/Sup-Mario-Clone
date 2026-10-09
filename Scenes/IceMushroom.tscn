@@ -1,19 +1,17 @@
-[gd_scene format=3 uid="uid://bwxjv88qhyvxc"]
+[gd_scene format=3 uid="uid://uxp68a566uji"]
 
-[ext_resource type="Script" path="res://Scripts/Mush.cs" id="1_gm8w7"]
+[ext_resource type="Script" uid="uid://cext4rgti7q8o" path="res://Scripts/Mushroom.cs" id="1_gm8w7"]
 [ext_resource type="Texture2D" uid="uid://c5v1wuyslor8h" path="res://Assets/Fungo-ghiaccio.png" id="1_up2lb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pctwx"]
 size = Vector2(24, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_raccolta"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pickup"]
 size = Vector2(24, 32)
 
-[node name="FungoGhiaccio" type="CharacterBody2D" unique_id=1025671403]
+[node name="IceMushroom" type="CharacterBody2D" unique_id=1025671403]
 collision_layer = 4
 script = ExtResource("1_gm8w7")
-Velocita = null
-Potere = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=922502959]
 scale = Vector2(1.6, 1.6)
@@ -25,10 +23,10 @@ region_rect = Rect2(41, 22, 24, 21)
 shape = SubResource("RectangleShape2D_pctwx")
 disabled = true
 
-[node name="Raccolta" type="Area2D" parent="." unique_id=203221843]
+[node name="PickupArea" type="Area2D" parent="." unique_id=203221843]
 collision_layer = 0
 collision_mask = 2
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Raccolta" unique_id=1521623454]
-shape = SubResource("RectangleShape2D_raccolta")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=1521623454]
+shape = SubResource("RectangleShape2D_pickup")

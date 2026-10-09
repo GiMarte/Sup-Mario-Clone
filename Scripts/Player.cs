@@ -28,32 +28,32 @@ public partial class Player : CharacterBody2D
 			velocity.X = Mathf.MoveToward(velocity.X, 0, Speed);
 		}
 
-		bool stavaSalendo = velocity.Y < 0;
+		bool wasMovingUp = velocity.Y < 0;
 		Velocity = velocity;
 		MoveAndSlide();
 
-		if (stavaSalendo)
+		if (wasMovingUp)
 		{
 			for (int i = 0; i < GetSlideCollisionCount(); i++)
 			{
-				var collisione = GetSlideCollision(i);
-				// La faccia inferiore del blocco ha la normale rivolta verso il basso.
-				if (collisione.GetNormal().Y > 0.5f && collisione.GetCollider() is Blocco blocco)
+				var collision = GetSlideCollision(i);
+				// The underside of the block has a downward-facing normal.
+				if (collision.GetNormal().Y > 0.5f && collision.GetCollider() is Block block)
 				{
-					blocco.Colpisci();
+					block.Hit();
 				}
 			}
 		}
 	}
 
-	public enum TipoPotere { Nessuno, Ghiaccio, Fuoco }
+	public enum PowerType { None = 0, Ice = 1, Fire = 2 }
 
-	public TipoPotere PotereAttuale { get; private set; }
-		= TipoPotere.Nessuno;
+	public PowerType CurrentPower { get; private set; }
+		= PowerType.None;
 
-	public void RiceviPotere(TipoPotere potere)
+	public void ReceivePower(PowerType power)
 	{
-		PotereAttuale = potere;
-		GD.Print($"Potere raccolto: {PotereAttuale}");
+		CurrentPower = power;
+		GD.Print($"Power collected: {CurrentPower}");
 	}
 }
