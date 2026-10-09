@@ -16,10 +16,13 @@ position = Vector2(-11, -3)
 shape = SubResource("CapsuleShape2D_7wl2m")
 
 [node name="GunSprite" type="Sprite2D" parent="." unique_id=290917971]
+position = Vector2(-13.000002, -5.999999)
+scale = Vector2(0.13500002, 0.19)
 texture = ExtResource("1_nxj5y")
 
 [node name="ShootPoint" type="Node2D" parent="GunSprite" unique_id=1558449704]
+position = Vector2(-12, -16)
 
 [node name="Bubble" parent="." unique_id=2117980552 instance=ExtResource("3_t6ynv")]
-position = Vector2(-59, -46)
+position = Vector2(-72, -53)
 scale = Vector2(2, 2)
