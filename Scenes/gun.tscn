@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://brbffs30u8wng" path="res://Assets/Pistola.png" id="1_nxj5y"]
 [ext_resource type="Script" uid="uid://djqwrymisbqju" path="res://Scripts/Gun.cs" id="1_oqrbh"]
+[ext_resource type="PackedScene" uid="uid://cxkyle2uucfyc" path="res://Scenes/bubble.tscn" id="3_t6ynv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7wl2m"]
 radius = 8.0
@@ -18,3 +19,7 @@ shape = SubResource("CapsuleShape2D_7wl2m")
 texture = ExtResource("1_nxj5y")
 
 [node name="ShootPoint" type="Node2D" parent="GunSprite" unique_id=1558449704]
+
+[node name="Bubble" parent="." unique_id=2117980552 instance=ExtResource("3_t6ynv")]
+position = Vector2(-59, -46)
+scale = Vector2(2, 2)

@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://c0rjn1s1m2tt6"]
 
+[ext_resource type="Script" uid="uid://b8wck6qui7xi5" path="res://Scripts/Octopus.cs" id="1_t1rp8"]
 [ext_resource type="Texture2D" uid="uid://b508xillmeyrg" path="res://Assets/PolipettoKiller.png" id="1_y3vv5"]
+[ext_resource type="PackedScene" uid="uid://boba7rtjc7t2k" path="res://Scenes/gun.tscn" id="3_0qvgu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mhpds"]
 radius = 5.0
 
 [node name="Octopus" type="CharacterBody2D" unique_id=1563138593]
+script = ExtResource("1_t1rp8")
 
 [node name="OctopusKiller" type="Sprite2D" parent="." unique_id=1705825727]
 position = Vector2(0, 6)
@@ -15,3 +18,10 @@ texture = ExtResource("1_y3vv5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=311505458]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_mhpds")
+
+[node name="Gun" parent="." unique_id=1467705735 instance=ExtResource("3_0qvgu")]
+position = Vector2(-3, -0.99999994)
+scale = Vector2(0.18, 0.18)
+
+[node name="Timer" type="Timer" parent="." unique_id=1335630225]
+autostart = true
