@@ -12,6 +12,13 @@ public partial class Bubble : Area2D
 
 	private Node2D trappedPlayer = null;
 	private bool isTrapping = false;
+	private Node2D shooter = null;
+
+  public void SetShooter(Node2D shooterNode)
+  {
+	shooter = shooterNode;
+  } 
+
 
 	public void SetDirection(Vector2 newDirection)
 	{
@@ -56,7 +63,7 @@ public partial class Bubble : Area2D
 			trappedPlayer = body;
 
 			body.SetPhysicsProcess(false);
-			this.GlobalPosition = body.GlobalPosition;
+			body.GlobalPosition = this.GlobalPosition;
 
 			StartBubblePopTimer(body);
 		}
