@@ -6,8 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pctwx"]
 size = Vector2(24, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_raccolta"]
+size = Vector2(24, 32)
+
 [node name="FungoGhiaccio" type="CharacterBody2D" unique_id=1025671403]
-visibility_layer = 4
+collision_layer = 4
 script = ExtResource("1_gm8w7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=922502959]
@@ -17,13 +20,13 @@ region_enabled = true
 region_rect = Rect2(41, 22, 24, 21)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1447600557]
-visibility_layer = 4
 shape = SubResource("RectangleShape2D_pctwx")
 disabled = true
 
-[node name="Raccolta (Area2D)" type="Area2D" parent="." unique_id=203221843]
-light_mask = 2
-visibility_layer = 0
+[node name="Raccolta" type="Area2D" parent="." unique_id=203221843]
+collision_layer = 0
+collision_mask = 2
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Raccolta (Area2D)" unique_id=1521623454]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Raccolta" unique_id=1521623454]
+shape = SubResource("RectangleShape2D_raccolta")

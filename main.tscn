@@ -69,6 +69,7 @@ shape = SubResource("PlatformShape")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=294523298]
 position = Vector2(160, 581)
+collision_layer = 2
 script = ExtResource("1_0xm2m")
 
 [node name="Visual" type="Polygon2D" parent="Player" unique_id=712531440]

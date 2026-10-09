@@ -10,10 +10,12 @@ public partial class Fungo : CharacterBody2D
 	public override void _Ready()
 	{
 		SetPhysicsProcess(false);
+		GetNode<Area2D>("Raccolta").BodyEntered += QuandoToccaPersonaggio;
 	}
 
 	public void Avvia()
 	{
+		GetNode<Area2D>("Raccolta").SetDeferred("monitoring", true);
 		GetNode<CollisionShape2D>("CollisionShape2D")
 			.SetDeferred("disabled", false);
 
@@ -39,5 +41,22 @@ public partial class Fungo : CharacterBody2D
 		{
 			_direzione *= -1;
 		}
+	}
+	[Export]
+	public Player.TipoPotere Potere { get; set; }
+	= Player.TipoPotere.Ghiaccio;
+
+	private bool _raccolto;
+
+	private void QuandoToccaPersonaggio(Node2D corpo)
+	{
+		if (_raccolto || corpo is not Player personaggio)
+		{
+			return;
+		}
+
+		_raccolto = true;
+		personaggio.RiceviPotere(Potere);
+		QueueFree();
 	}
 }
