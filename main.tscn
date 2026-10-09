@@ -5,17 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://dlq3a6y04vsnf" path="res://Scenes/Block.tscn" id="3_block"]
 [ext_resource type="Texture2D" uid="uid://qmjifr2oe0u3" path="res://Assets/CuboTerra.png" id="4_ground"]
 [ext_resource type="Texture2D" uid="uid://cb43b0ach2s1o" path="res://Assets/Cubotto-Vuoto.png" id="5_lquwl"]
-<<<<<<< HEAD
-[ext_resource type="PackedScene" uid="uid://barx8jc6jvpal" path="res://Scenes/FungoFuoco.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://uxp68a566uji" path="res://Scenes/FungoGhiaccio.tscn" id="7_5vw27"]
-[ext_resource type="PackedScene" uid="uid://bq6762kd3oh0" path="res://Scenes/Moneta.tscn" id="8_kek77"]
-[ext_resource type="PackedScene" uid="uid://c0rjn1s1m2tt6" path="res://Scenes/polipetto.tscn" id="9_kek77"]
-=======
 [ext_resource type="PackedScene" uid="uid://barx8jc6jvpal" path="res://Scenes/FireMushroom.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://uxp68a566uji" path="res://Scenes/IceMushroom.tscn" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bq6762kd3oh0" path="res://Scenes/Coin.tscn" id="8_kek77"]
 [ext_resource type="AudioStream" uid="uid://cq08wkthy6eam" path="res://SoundsEffects/jump.wav" id="9_jump"]
->>>>>>> main
+[ext_resource type="PackedScene" uid="uid://c0rjn1s1m2tt6" path="res://Scenes/Octopus.tscn" id="9_kek77"]
 
 [sub_resource type="RectangleShape2D" id="GroundShape"]
 size = Vector2(1280, 112)
@@ -108,18 +102,11 @@ position = Vector2(363, 483)
 UsedTexture = ExtResource("5_lquwl")
 RewardScene = ExtResource("7_5vw27")
 
-<<<<<<< HEAD
-[node name="Blocco3" parent="." unique_id=768978426 instance=ExtResource("3_blocco")]
+[node name="Block3" parent="." unique_id=768978426 instance=ExtResource("3_block")]
 position = Vector2(452, 484)
-TextureVuota = ExtResource("5_lquwl")
-Premio = ExtResource("8_kek77")
+UsedTexture = ExtResource("5_lquwl")
+RewardScene = ExtResource("8_kek77")
 
 [node name="Octopus" parent="." unique_id=1563138593 instance=ExtResource("9_kek77")]
 position = Vector2(568, 598)
 scale = Vector2(2.7, 2.7)
-=======
-[node name="Block3" parent="." unique_id=768978426 instance=ExtResource("3_block")]
-position = Vector2(433, 485)
-UsedTexture = ExtResource("5_lquwl")
-RewardScene = ExtResource("8_kek77")
->>>>>>> main
