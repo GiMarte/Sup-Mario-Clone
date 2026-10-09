@@ -71,7 +71,6 @@ public partial class Gun : Area2D
 					Reparent(body, false);
 					Position = new Vector2(10, 0);
 				}).CallDeferred();
->>>>>>> main
 			}
 		}
 	}
