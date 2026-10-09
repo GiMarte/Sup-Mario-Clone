@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://boba7rtjc7t2k"]
+
+[ext_resource type="Texture2D" uid="uid://brbffs30u8wng" path="res://Assets/Pistola.png" id="1_nxj5y"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7wl2m"]
+radius = 8.0
+
+[node name="Gun" type="Area2D" unique_id=1467705735]
+position = Vector2(10, 6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1417363016]
+position = Vector2(-11, -3)
+shape = SubResource("CapsuleShape2D_7wl2m")
+
+[node name="GunSprite" type="Sprite2D" parent="." unique_id=290917971]
+texture = ExtResource("1_nxj5y")
+
+[node name="ShootPoint" type="Node2D" parent="GunSprite" unique_id=1558449704]

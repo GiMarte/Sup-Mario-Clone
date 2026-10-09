@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c0rjn1s1m2tt6"]
+
+[ext_resource type="Texture2D" uid="uid://b508xillmeyrg" path="res://Assets/PolipettoKiller.png" id="1_y3vv5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mhpds"]
+radius = 5.0
+
+[node name="Octopus" type="CharacterBody2D" unique_id=1563138593]
+
+[node name="OctopusKiller" type="Sprite2D" parent="." unique_id=1705825727]
+position = Vector2(0, 6)
+scale = Vector2(0.2775, 0.26000002)
+texture = ExtResource("1_y3vv5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=311505458]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_mhpds")
