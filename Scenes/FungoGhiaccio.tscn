@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://uxp68a566uji"]
 
-[ext_resource type="Script" uid="uid://cext4rgti7q8o" path="res://Fungo.cs" id="1_gm8w7"]
+[ext_resource type="Script" uid="uid://cext4rgti7q8o" path="res://Scripts/Fungo.cs" id="1_gm8w7"]
 [ext_resource type="Texture2D" uid="uid://c5v1wuyslor8h" path="res://Assets/Fungo-ghiaccio.png" id="1_up2lb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pctwx"]

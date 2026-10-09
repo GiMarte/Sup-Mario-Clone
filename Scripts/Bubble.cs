@@ -48,7 +48,9 @@ public partial class Bubble : Area2D
 			return;
 		}
 
-		if (body.Name == "Player")
+		bool isAnyPlayer = body.Name == "Player" || body.Name == "Player1" || body.Name == "Player2" || (body is CharacterBody2D && body.Name != "polipetto");
+
+		if (isAnyPlayer == true)
 		{
 			isTrapping = true;
 			trappedPlayer = body;

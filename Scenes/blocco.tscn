@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dlq3a6y04vsnf"]
 
-[ext_resource type="Script" uid="uid://dw13213iysj53" path="res://Blocco.cs" id="1_blocco"]
+[ext_resource type="Script" uid="uid://dw13213iysj53" path="res://Scripts/Blocco.cs" id="1_blocco"]
 [ext_resource type="Texture2D" uid="uid://dak87j88lx5ut" path="res://Assets/Cubetto-Domanda.png" id="2_n3yq7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_blocco"]
