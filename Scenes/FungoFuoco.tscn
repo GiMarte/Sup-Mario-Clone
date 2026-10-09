@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cle84fy4ifqb3"]
 
 [ext_resource type="Texture2D" uid="uid://ci2nx524wpwtr" path="res://Assets/Fungo-fuoco.png" id="1_4ixeg"]
-[ext_resource type="Script" path="res://Scripts/Mush.cs" id="1_th1bx"]
+[ext_resource type="Script" uid="uid://cext4rgti7q8o" path="res://Scripts/Mushroom.cs" id="1_th1bx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ixeg"]
 size = Vector2(24, 32)
@@ -9,10 +9,10 @@ size = Vector2(24, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_th1bx"]
 size = Vector2(24, 32)
 
-[node name="FungoFuoco" type="CharacterBody2D" unique_id=143998107]
+[node name="FireMushroom" type="CharacterBody2D" unique_id=143998107]
+collision_layer = 4
 script = ExtResource("1_th1bx")
-Velocita = null
-Potere = 2
+Power = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1262543787]
 scale = Vector2(1.6, 1.6)
@@ -24,10 +24,10 @@ region_rect = Rect2(34, 41, 19, 20)
 shape = SubResource("RectangleShape2D_4ixeg")
 disabled = true
 
-[node name="Raccolta" type="Area2D" parent="." unique_id=374402252]
+[node name="PickupArea" type="Area2D" parent="." unique_id=374402252]
 collision_layer = 0
 collision_mask = 2
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Raccolta" unique_id=327984665]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=327984665]
 shape = SubResource("RectangleShape2D_th1bx")

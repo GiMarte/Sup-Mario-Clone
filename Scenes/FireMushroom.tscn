@@ -10,6 +10,7 @@ size = Vector2(24, 32)
 size = Vector2(24, 32)
 
 [node name="FireMushroom" type="CharacterBody2D" unique_id=143998107]
+collision_layer = 4
 script = ExtResource("1_th1bx")
 Power = 2
 
