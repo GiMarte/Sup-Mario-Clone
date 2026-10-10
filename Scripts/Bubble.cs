@@ -3,89 +3,59 @@ using Godot;
 public partial class Bubble : Area2D
 {
 	[Export]
-	public float Speed = 180.0f;
+	public float Speed = 100.0f;
 
 	[Export]
 	public float TrapDuration = 3.0f;
 
-	private Vector2 direction = new Vector2(-1, 0);
+	[Export]
+	public Vector2 CenterOffset = new Vector2(0, 0);
 
-	private Node2D trappedPlayer = null;
 	private bool isTrapping = false;
-	private Node2D shooter = null;
-
-  public void SetShooter(Node2D shooterNode)
-  {
-	shooter = shooterNode;
-  } 
-
-
-	public void SetDirection(Vector2 newDirection)
-	{
-		direction = newDirection.Normalized();
-	}
+	private Node2D trappedPlayer = null;
+	private float trapTimer = 0.0f;
 
 	public override void _Ready()
 	{
 		this.BodyEntered += OnBodyEntered;
+		Modulate = new Color(1, 1, 1, 1.0f);
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (isTrapping == true)
+		if (!isTrapping)
 		{
-			if (GodotObject.IsInstanceValid(trappedPlayer) == true)
-			{
-				this.GlobalPosition = trappedPlayer.GlobalPosition;
-			}
+			Position += Vector2.Up * Speed * (float)delta;
 		}
-		else
+		else if (trappedPlayer != null)
 		{
-			Vector2 currentPosition = this.Position;
-			currentPosition.X = currentPosition.X + (direction.X * Speed * (float)delta);
-			currentPosition.Y = currentPosition.Y + (direction.Y * Speed * (float)delta);
-			this.Position = currentPosition;
+			trappedPlayer.GlobalPosition = GlobalPosition + CenterOffset;
+
+			trapTimer += (float)delta;
+			if (trapTimer >= TrapDuration)
+			{
+				if (trappedPlayer is CharacterBody2D playerBody)
+				{
+					playerBody.SetProcess(true);
+					playerBody.SetPhysicsProcess(true);
+				}
+				QueueFree();
+			}
 		}
 	}
 
 	private void OnBodyEntered(Node2D body)
 	{
-		if (isTrapping == true)
-		{
-			return;
-		}
-
-		bool isAnyPlayer = body.Name == "Player" || body.Name == "Player1" || body.Name == "Player2" || (body is CharacterBody2D && body.Name != "Octopus");
-
-		if (isAnyPlayer == true)
+		if (!isTrapping && body.Name == "Player")
 		{
 			isTrapping = true;
 			trappedPlayer = body;
+			Modulate = new Color(1, 1, 1, 0.5f);
 
-			body.SetPhysicsProcess(false);
-			body.GlobalPosition = this.GlobalPosition;
-
-			StartBubblePopTimer(body);
-		}
-		else
-		{
-			if (body.Name != "Octopus")
+			if (body is CharacterBody2D playerBody)
 			{
-				this.QueueFree();
+				playerBody.SetPhysicsProcess(false);
 			}
 		}
-	}
-
-	private async void StartBubblePopTimer(Node2D playerNode)
-	{
-		SceneTreeTimer timer = GetTree().CreateTimer(TrapDuration);
-		await ToSignal(timer, SceneTreeTimer.SignalName.Timeout);
-
-		if (GodotObject.IsInstanceValid(playerNode) == true)
-		{
-			playerNode.SetPhysicsProcess(true);
-		}
-
-		this.QueueFree();
 	}
 }

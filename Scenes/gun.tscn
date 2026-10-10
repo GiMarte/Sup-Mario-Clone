@@ -5,7 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cxkyle2uucfyc" path="res://Scenes/bubble.tscn" id="3_t6ynv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7wl2m"]
-radius = 8.0
+radius = 3.0
+height = 10.0
 
 [node name="Gun" type="Area2D" unique_id=1467705735]
 position = Vector2(10, 6)
@@ -15,12 +16,12 @@ BubbleScene = ExtResource("3_t6ynv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1417363016]
 light_mask = 3
-position = Vector2(-11, -3)
+position = Vector2(-11, -4)
 shape = SubResource("CapsuleShape2D_7wl2m")
 
 [node name="GunSprite" type="Sprite2D" parent="." unique_id=290917971]
-position = Vector2(-13.000002, -5.999999)
-scale = Vector2(0.13500002, 0.19)
+position = Vector2(-7, -3)
+scale = Vector2(0.2875, 0.265)
 texture = ExtResource("1_nxj5y")
 
 [node name="ShootPoint" type="Node2D" parent="GunSprite" unique_id=1558449704]
