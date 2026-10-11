@@ -36,6 +36,7 @@ public partial class Block : StaticBody2D
 
             if (reward is Mushroom mushroom)
             {
+                GetNode<AudioStreamPlayer>("PowerUpSpawnSound").Play();
                 tween.TweenCallback(Callable.From(mushroom.Activate));
             }
             else if (reward is Coin)
