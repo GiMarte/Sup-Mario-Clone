@@ -19,6 +19,7 @@ public partial class Gun : Area2D
 			Bubble newBubble = BubbleScene.Instantiate<Bubble>();
 			newBubble.GlobalPosition = shootPoint.GlobalPosition;
 			GetTree().CurrentScene.AddChild(newBubble);
+			GetNode<AudioStreamPlayer>("BubbleSound").Play();
 		}
 	}
 }

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://brbffs30u8wng" path="res://Assets/Pistola.png" id="1_nxj5y"]
 [ext_resource type="Script" uid="uid://djqwrymisbqju" path="res://Scripts/Gun.cs" id="1_oqrbh"]
 [ext_resource type="PackedScene" uid="uid://cxkyle2uucfyc" path="res://Scenes/bubble.tscn" id="3_t6ynv"]
+[ext_resource type="AudioStream" uid="uid://3wkdido321cf" path="res://SoundsEffects/bubbleSound.wav" id="4_bubble_sound"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7wl2m"]
 radius = 3.0
@@ -26,3 +27,7 @@ texture = ExtResource("1_nxj5y")
 
 [node name="ShootPoint" type="Node2D" parent="GunSprite" unique_id=1558449704]
 position = Vector2(-12, -16)
+
+[node name="BubbleSound" type="AudioStreamPlayer" parent="." unique_id=1637489902]
+stream = ExtResource("4_bubble_sound")
+volume_db = -26.316
