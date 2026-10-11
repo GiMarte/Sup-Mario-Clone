@@ -11,6 +11,8 @@ public partial class Octopus : CharacterBody2D
 	private Vector2 movementDirection = new Vector2(-1, 0);
 	private Gun gun;
 	private Timer timer;
+	private float flipCooldown = 0.2f;
+	private float timeSinceLastFlip = 0.0f;
 
 	public override void _Ready()
 	{
@@ -25,6 +27,8 @@ public partial class Octopus : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		timeSinceLastFlip += (float)delta;
+
 		Vector2 currentVelocity = Vector2.Zero;
 
 		if (IsOnFloor() == false)
@@ -41,20 +45,27 @@ public partial class Octopus : CharacterBody2D
 
 		MoveAndSlide();
 
-		if (IsOnWall())
+		if (timeSinceLastFlip >= flipCooldown)
 		{
-			FlipDirection();
-		}
-
-		for (int i = 0; i < GetSlideCollisionCount(); i++)
-		{
-			KinematicCollision2D collision = GetSlideCollision(i);
-			Node collider = (Node)collision.GetCollider();
-
-			if (collider != null && collider.Name == "Player")
+			if (IsOnWall())
 			{
 				FlipDirection();
-				break;
+				timeSinceLastFlip = 0.0f;
+			}
+			else
+			{
+				for (int i = 0; i < GetSlideCollisionCount(); i++)
+				{
+					KinematicCollision2D collision = GetSlideCollision(i);
+					Node collider = collision.GetCollider() as Node;
+
+					if (collider != null && collider.IsInGroup("Player"))
+					{
+						FlipDirection();
+						timeSinceLastFlip = 0.0f;
+						break;
+					}
+				}
 			}
 		}
 	}
