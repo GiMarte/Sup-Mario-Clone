@@ -51,6 +51,7 @@ public partial class Bubble : Area2D
 			isTrapping = true;
 			trappedPlayer = body;
 			Modulate = new Color(1, 1, 1, 0.5f);
+			body.GetNode<AudioStreamPlayer>("BubbleTrappedSound").Play();
 
 			if (body is CharacterBody2D playerBody)
 			{
