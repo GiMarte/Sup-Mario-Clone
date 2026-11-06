@@ -91,9 +91,10 @@ public partial class Level1 : Node2D
     public override void _PhysicsProcess(double delta)
     {
         if (_completed || (_player.Position.Y <= 880 && _remaining > 0)) return;
-        ClearBubbles();
+        ClearProjectiles();
         _player.Position = _spawn;
         _player.Velocity = Vector2.Zero;
+        _player.ReceivePower(Player.PowerType.None);
         _player.SetProcess(true);
         _player.SetPhysicsProcess(true);
         _remaining = 400;
@@ -115,20 +116,20 @@ public partial class Level1 : Node2D
         if (snap) _camera.ResetSmoothing();
     }
 
-    private void ClearBubbles()
+    private void ClearProjectiles()
     {
         foreach (Node child in GetChildren())
         {
-            if (child is not Bubble bubble) continue;
-            bubble.SetPhysicsProcess(false);
-            bubble.QueueFree();
+            if (child is not Bubble && child is not PowerBall) continue;
+            child.SetPhysicsProcess(false);
+            child.QueueFree();
         }
     }
 
     private void CompleteLevel()
     {
         _completed = true;
-        ClearBubbles();
+        ClearProjectiles();
         _player.SetPhysicsProcess(false);
         _player.Velocity = Vector2.Zero;
         _player.GetNode<Sprite2D>("Sprite2D").FlipH = false;

@@ -2443,7 +2443,7 @@ offset_bottom = 707.0
 theme_override_colors/font_outline_color = Color(0.1, 0.15, 0.28, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 18
-text = "A / D  MUOVI      SPAZIO  SALTA      R  RICOMINCIA"
+text = "A / D  MUOVI     SPAZIO  SALTA     F  LANCIA     R  RICOMINCIA"
 
 [node name="Power" type="Label" parent="HUD" unique_id=1639014723]
 offset_left = 960.0

@@ -13,6 +13,8 @@ public partial class Octopus : CharacterBody2D
 	private Timer timer;
 	private float flipCooldown = 0.2f;
 	private float timeSinceLastFlip = 0.0f;
+	private float _freezeRemaining;
+	private Color _normalColor;
 
 	public override void _Ready()
 	{
@@ -27,6 +29,13 @@ public partial class Octopus : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (_freezeRemaining > 0)
+		{
+			_freezeRemaining = Mathf.Max(0, _freezeRemaining - (float)delta);
+			Velocity = Vector2.Zero;
+			if (_freezeRemaining > 0) return;
+			Modulate = _normalColor;
+		}
 		timeSinceLastFlip += (float)delta;
 
 		Vector2 currentVelocity = Vector2.Zero;
@@ -76,9 +85,17 @@ public partial class Octopus : CharacterBody2D
 		Scale = new Vector2(-Scale.X, Scale.Y);
 	}
 
+	public void Freeze(float duration)
+	{
+		if (_freezeRemaining <= 0) _normalColor = Modulate;
+		_freezeRemaining = Mathf.Max(_freezeRemaining, duration);
+		Velocity = Vector2.Zero;
+		Modulate = new Color(0.5f, 0.82f, 1);
+	}
+
 	private void OnTimerTimeout()
 	{
-		if (gun != null)
+		if (_freezeRemaining <= 0 && gun != null)
 		{
 			gun.Shoot();
 		}
