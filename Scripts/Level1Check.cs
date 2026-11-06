@@ -39,6 +39,8 @@ public partial class Level1Check : Node
             Input.ActionRelease("jump");
             await Steps(35);
             Require(firstBlock.IsUsed, "Jumping from below must activate the existing reward block.");
+            Require(_level.GetNode<Label>("HUD/CoinCount").Text.EndsWith("x01"),
+                "A coin from a question block must also update the coin counter.");
 
             var coin = _level.GetNode<Area2D>("Coins/Coin0");
             string coinsBefore = _level.GetNode<Label>("HUD/CoinCount").Text;
@@ -52,6 +54,20 @@ public partial class Level1Check : Node
             Require(_level.GetNode<Label>("HUD/CoinCount").Text == coinsAfter,
                 "The same coin must only be counted once.");
 
+            _player.Position = new Vector2(6065, 325);
+            _player.Velocity = Vector2.Zero;
+            await Steps(3);
+            Require(_player.IsOnFloor(), "The camera test must begin on the highest stair.");
+            Input.ActionPress("jump");
+            await Steps(1);
+            Input.ActionRelease("jump");
+            await Steps(34);
+            var camera = _level.GetNode<Camera2D>("Camera2D");
+            float visibleTop = camera.GetScreenCenterPosition().Y - GetViewport().GetVisibleRect().Size.Y / (2 * camera.Zoom.Y);
+            float playerTop = _player.GetNode<Sprite2D>("Sprite2D").GlobalPosition.Y - 16;
+            Require(playerTop >= visibleTop,
+                "The player must remain visible when jumping from the highest staircase.");
+
             _player.Position = new Vector2(2224, 930);
             _player.Velocity = Vector2.Zero;
             await Steps(5);
@@ -59,6 +75,19 @@ public partial class Level1Check : Node
                 "Falling into a gap must return the player to the start.");
             await Steps(20);
             Require(_player.IsOnFloor(), "The respawn must restore normal physics and floor contact.");
+
+            using var bubbleScene = GD.Load<PackedScene>("res://Scenes/bubble.tscn");
+            var bubble = bubbleScene.Instantiate<Bubble>();
+            bubble.Speed = 0;
+            bubble.TrapDuration = 10;
+            bubble.Position = _player.GetNode<CollisionShape2D>("CollisionShape2D").GlobalPosition;
+            _level.AddChild(bubble);
+            await Steps(4);
+            Require(!_player.IsPhysicsProcessing(), "The bubble must actually trap the player for this regression check.");
+            _player.Position = new Vector2(2224,930);
+            await Steps(4);
+            Require(!GodotObject.IsInstanceValid(bubble) && _player.IsPhysicsProcessing() && _player.Position.X < 200,
+                "Respawning while trapped must clear the bubble and restore the player's controls.");
 
             Input.ActionPress("move_right");
             for (int tick = 0; tick < 4000 && !_level.GetNode<Control>("HUD/Victory").Visible; tick++)
@@ -71,7 +100,12 @@ public partial class Level1Check : Node
             Input.ActionRelease("move_right");
             Require(_level.GetNode<Control>("HUD/Victory").Visible,
                 $"The whole course must be traversable with movement and jumps; stopped at {_player.Position}.");
-            GD.Print("PASS: Level1 spawn, real gap, jumping reward, one-time coin, falling respawn and full-course traversal to the flag.");
+            GD.Print("PASS: Level1 spawn, real gap, reward/collectible coins, high-jump camera, falling and trapped respawn, full-course traversal and flag.");
+            foreach (AudioStreamPlayer audio in _level.FindChildren("*", "AudioStreamPlayer", true, false))
+                audio.Stop();
+            // Fixed-FPS tests outrun the audio thread; let it release pending playback before exit.
+            await Task.Delay(80);
+            await Steps(2);
             GetTree().Quit();
         }
         catch (Exception error)

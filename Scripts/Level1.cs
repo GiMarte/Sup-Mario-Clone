@@ -110,7 +110,8 @@ public partial class Level1 : Node2D
     private void UpdateCamera(bool snap)
     {
         float halfWidth = GetViewportRect().Size.X / (_camera.Zoom.X * 2);
-        _camera.Position = new Vector2(Mathf.Clamp(_player.Position.X + 110, halfWidth, WorldWidth - halfWidth), 432);
+        float cameraY = Mathf.Min(432, _player.Position.Y + 160);
+        _camera.Position = new Vector2(Mathf.Clamp(_player.Position.X + 110, halfWidth, WorldWidth - halfWidth), cameraY);
         if (snap) _camera.ResetSmoothing();
     }
 
