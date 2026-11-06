@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Level1Check.cs" id="1_check"]
+
+[node name="Level1Check" type="Node"]
+script = ExtResource("1_check")
