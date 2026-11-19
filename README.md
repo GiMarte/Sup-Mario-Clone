@@ -4,7 +4,7 @@ Un progetto per imparare Godot costruendo insieme un platform 2D, con l'obiettiv
 
 ## Base attuale
 
-La scena principale è `Scenes/Level1.tscn`: un livello a scorrimento ispirato al mondo 1-1. Il vecchio esperimento resta disponibile in `main.tscn`.
+La scena di avvio `Scenes/LevelSelect.tscn` mostra la scelta del livello. **Livello 1** apre il percorso a scorrimento in `Scenes/Level1.tscn`. Il vecchio esperimento resta disponibile in `main.tscn`.
 
 `Scripts/Level1.cs` gestisce camera, monete, interfaccia, ripartenza dalle cadute e arrivo alla bandiera. Terreno, tubi, blocchi e decorazioni sono nodi modificabili nella scena, costruiti con gli asset inclusi e regioni della mappa di riferimento. I movimenti e i premi riutilizzano questi script C#:
 
@@ -16,7 +16,7 @@ La scena principale è `Scenes/Level1.tscn`: un livello a scorrimento ispirato a
 
 Il progetto usa il renderer Compatibility e un'area di gioco di 1280 x 720. Le modalità in due e il multiplayer sono ancora da implementare. L'esportazione Web non è ancora configurata o verificata.
 
-Apri `project.godot` con Godot 4.7.2 .NET e premi **F5** per avviare il primo livello. **A/D** muovono il personaggio, **Spazio** salta, **F** lancia e **R** ricomincia. Le monete raccolte restano conteggiate durante la stessa partita; una caduta riporta alla partenza, ripristina il tempo e fa perdere il potere. Alla bandiera il personaggio raggiunge il castello e appare il risultato. Usate entrambi la stessa versione di Godot e condividete il progetto con Git.
+Apri `project.godot` con Godot 4.7.2 .NET, premi **F5** e scegli **Livello 1** con un clic o con **Invio**. **A/D** muovono il personaggio, **Spazio** salta, **F** lancia e **R** ricomincia. Le monete raccolte restano conteggiate durante la stessa partita; una caduta riporta alla partenza, ripristina il tempo e fa perdere il potere. Alla bandiera il personaggio raggiunge il castello e appare il risultato. Usate entrambi la stessa versione di Godot e condividete il progetto con Git.
 
 
 Il fungo fuoco dà vestiti rosso/arancio e palline che eliminano i polipetti; il fungo ghiaccio dà vestiti azzurri e palline che li congelano per tre secondi. I colpi seguono la direzione del personaggio e rimbalzano sul terreno. La crescita mantiene i piedi sul pavimento e attende spazio libero se c’è un soffitto basso.

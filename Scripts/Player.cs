@@ -13,6 +13,7 @@ public partial class Player : CharacterBody2D
 	private Vector2 _baseSpritePosition;
 	private Vector2 _baseSpriteScale;
 	private bool _grown;
+	private bool _wasDescending;
 	private int _facing = 1;
 	private float _shotCooldown;
 
@@ -60,6 +61,7 @@ public partial class Player : CharacterBody2D
 		}
 
 		bool wasMovingUp = velocity.Y < 0;
+		_wasDescending = velocity.Y > 0;
 		Velocity = velocity;
 		MoveAndSlide();
 
@@ -87,6 +89,18 @@ public partial class Player : CharacterBody2D
 			ball.GlobalPosition = _collider.GlobalPosition + new Vector2(_facing * 24, -2);
 			_shotCooldown = 0.25f;
 		}
+	}
+
+	internal bool IsLandingOn(Node enemy)
+	{
+		// The contact signal can arrive after the landing has stopped the fall.
+		if (!IsPhysicsProcessing() || (!_wasDescending && !IsOnFloor())) return false;
+
+		using var contact = new KinematicCollision2D();
+		// The contact area extends slightly past the solid collider.
+		return TestMove(GlobalTransform, Vector2.Down * 3.0f, contact)
+			&& contact.GetCollider() == enemy
+			&& contact.GetAngle(Vector2.Up) <= FloorMaxAngle;
 	}
 
 	public enum PowerType { None = 0, Ice = 1, Fire = 2 }

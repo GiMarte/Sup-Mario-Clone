@@ -5,6 +5,7 @@ public partial class Level1 : Node2D
 {
     private const float WorldWidth = 7168;
     private const float FinishX = 6352;
+    private const float EnemyHitRecoverySeconds = 1.0f;
     private Player _player;
     private Camera2D _camera;
     private Vector2 _spawn;
@@ -14,13 +15,16 @@ public partial class Level1 : Node2D
     private Label _time;
     private Label _power;
     private Control _victory;
+    private Control _gameOver;
+    private Button _retryButton;
     private AudioStreamPlayer _coinSound;
     private readonly List<Block> _coinBlocks = new();
     private float _remaining = 400;
     private float _animationTime;
+    private float _enemyHitRecovery;
     private int _collected;
     private int _deaths;
-    private bool _completed;
+    private bool _finished;
 
     public override void _Ready()
     {
@@ -33,12 +37,21 @@ public partial class Level1 : Node2D
         _time = GetNode<Label>("HUD/Time");
         _power = GetNode<Label>("HUD/Power");
         _victory = GetNode<Control>("HUD/Victory");
+        _gameOver = GetNode<Control>("HUD/GameOver");
+        _retryButton = GetNode<Button>("%RetryButton");
+        _retryButton.Pressed += RestartLevel;
+        GetNode<Button>("%LevelMenuButton").Pressed += () =>
+            GetTree().ChangeSceneToFile("res://Scenes/LevelSelect.tscn");
         _coinSound = GetNode<AudioStreamPlayer>("CoinSound");
+        var enemies = GetNode("Enemies");
+        foreach (Node enemy in enemies.GetChildren())
+            ConnectEnemyContact(enemy);
+        enemies.ChildEnteredTree += ConnectEnemyContact;
         foreach (Area2D coin in _coins.GetChildren())
         {
             coin.BodyEntered += body =>
             {
-                if (body != _player || !coin.Visible || _completed) return;
+                if (body != _player || !coin.Visible || _finished) return;
                 coin.Hide();
                 coin.SetDeferred("monitoring", false);
                 _collected++;
@@ -52,14 +65,14 @@ public partial class Level1 : Node2D
         }
         GetNode<Area2D>("Finish").BodyEntered += body =>
         {
-            if (body == _player && !_completed) CompleteLevel();
+            if (body == _player && !_finished) CompleteLevel();
         };
         UpdateCamera(true);
     }
 
     public override void _Process(double delta)
     {
-        if (!_completed)
+        if (!_finished)
         {
             _remaining = Mathf.Max(0, _remaining - (float)delta);
             _animationTime += (float)delta;
@@ -90,7 +103,9 @@ public partial class Level1 : Node2D
 
     public override void _PhysicsProcess(double delta)
     {
-        if (_completed || (_player.Position.Y <= 880 && _remaining > 0)) return;
+        if (_finished) return;
+        _enemyHitRecovery = Mathf.Max(0, _enemyHitRecovery - (float)delta);
+        if (_player.Position.Y <= 880 && _remaining > 0) return;
         ClearProjectiles();
         _player.Position = _spawn;
         _player.Velocity = Vector2.Zero;
@@ -98,6 +113,7 @@ public partial class Level1 : Node2D
         _player.SetProcess(true);
         _player.SetPhysicsProcess(true);
         _remaining = 400;
+        _enemyHitRecovery = 0;
         _deaths++;
         UpdateCamera(true);
     }
@@ -105,8 +121,47 @@ public partial class Level1 : Node2D
     public override void _UnhandledKeyInput(InputEvent inputEvent)
     {
         if (inputEvent is InputEventKey key && key.Pressed && !key.Echo && key.Keycode == Key.R)
-            GetTree().ReloadCurrentScene();
+            RestartLevel();
     }
+
+    private void ConnectEnemyContact(Node enemy)
+    {
+        if (enemy.GetNodeOrNull<Area2D>("ContactArea") is Area2D contact)
+            contact.BodyEntered += body => OnEnemyContact(enemy, body);
+    }
+
+    private void OnEnemyContact(Node enemy, Node2D body)
+    {
+        if (body != _player || _finished || !CanProcess() || enemy.IsQueuedForDeletion()) return;
+        if (_player.IsLandingOn(enemy))
+        {
+            enemy.QueueFree();
+            return;
+        }
+        if (_enemyHitRecovery > 0) return;
+
+        if (_player.CurrentPower != Player.PowerType.None)
+        {
+            _enemyHitRecovery = EnemyHitRecoverySeconds;
+            _player.ReceivePower(Player.PowerType.None);
+            return;
+        }
+
+        _finished = true;
+        // Disabling the level also disables its collision bodies, so wait for physics to finish.
+        Callable.From(ShowGameOver).CallDeferred();
+    }
+
+    private void ShowGameOver()
+    {
+        _player.Velocity = Vector2.Zero;
+        _player.Hide();
+        ProcessMode = ProcessModeEnum.Disabled;
+        _gameOver.Show();
+        _retryButton.GrabFocus();
+    }
+
+    private void RestartLevel() => GetTree().ReloadCurrentScene();
 
     private void UpdateCamera(bool snap)
     {
@@ -128,7 +183,7 @@ public partial class Level1 : Node2D
 
     private void CompleteLevel()
     {
-        _completed = true;
+        _finished = true;
         ClearProjectiles();
         _player.SetPhysicsProcess(false);
         _player.Velocity = Vector2.Zero;

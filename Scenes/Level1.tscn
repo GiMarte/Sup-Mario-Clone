@@ -239,6 +239,12 @@ border_color = Color(1, 0.78, 0.25, 1)
 shadow_color = Color(0, 0, 0, 0.25)
 shadow_size = 10
 
+[sub_resource type="InputEventKey" id="InputEventKey_restart"]
+keycode = 82
+
+[sub_resource type="Shortcut" id="Shortcut_restart"]
+events = [SubResource("InputEventKey_restart")]
+
 [node name="Level1" type="Node2D" unique_id=1964793614]
 texture_filter = 1
 script = ExtResource("level")
@@ -2497,3 +2503,83 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 18
 text = "PREMI R PER RICOMINCIARE"
 horizontal_alignment = 1
+
+[node name="GameOver" type="Control" parent="HUD"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dimmer" type="ColorRect" parent="HUD/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.03, 0.06, 0.12, 0.55)
+
+[node name="Center" type="CenterContainer" parent="HUD/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="HUD/GameOver/Center"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("Resource72")
+
+[node name="Padding" type="MarginContainer" parent="HUD/GameOver/Center/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 28
+
+[node name="Content" type="VBoxContainer" parent="HUD/GameOver/Center/Panel/Padding"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="HUD/GameOver/Center/Panel/Padding/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Partita finita"
+horizontal_alignment = 1
+
+[node name="Question" type="Label" parent="HUD/GameOver/Center/Panel/Padding/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Vuoi ricominciare?"
+horizontal_alignment = 1
+
+[node name="Actions" type="HBoxContainer" parent="HUD/GameOver/Center/Panel/Padding/Content"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RetryButton" type="Button" parent="HUD/GameOver/Center/Panel/Padding/Content/Actions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 20
+shortcut = SubResource("Shortcut_restart")
+text = "Ricomincia"
+
+[node name="LevelMenuButton" type="Button" parent="HUD/GameOver/Center/Panel/Padding/Content/Actions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 20
+text = "Torna ai livelli"
